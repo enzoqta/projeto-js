@@ -4,9 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Semana 1</h1>
+    <h1>Exercícios JavaScript</h1>
+<div class="container">
+    <button onclick="exercicio1()">Par ou Ímpar</button>
+    <button onclick="exercicio2()">Número Primo</button>
+    <button onclick="exercicio3()">Fatorial</button>
+    <button onclick="exercicio4()">Tipo de Dado</button>
+</div>
+
+<script>
+    function exercicio1() {
+        let numero;
+        while (isNaN(numero) || numero <= 0 || numero % 1 !== 0) {
+            numero = prompt("Digite um número inteiro positivo (PAR/ÍMPAR):", "");
+        }
+        if (numero % 2 == 0) {
+            alert("O número " + numero + " é PAR");
+        } else {
+            alert("O número " + numero + " é ÍMPAR");
+        }
+    }
+
+    function exercicio2() {
+        let numero;
+        while (isNaN(numero) || numero <= 0 || numero % 1 !== 0) {
+            numero = prompt("Digite um número inteiro positivo (PRIMO):", "");
+        }
+        let primo = true;
+        if (numero == 1) {
+            primo = false;
+        } else {
+            for (let i = 2; i < numero; i++) {
+                if (numero % i == 0) {
+                    primo = false;
+                    break;
+                }
+            }
+        }
+        if (primo) {
+            alert("O número " + numero + " é PRIMO");
+        } else {
+            alert("O número " + numero + " NÃO é primo");
+        }
+    }
+
+    function exercicio3() {
+        let numero;
+        while (isNaN(numero) || numero <= 0 || numero % 1 !== 0) {
+            numero = prompt("Digite um número inteiro positivo (FATORIAL):", "");
+        }
+        let fatorial = 1;
+        for (let i = 1; i <= numero; i++) {
+            fatorial *= i;
+        }
+        alert("O fatorial de " + numero + " é " + fatorial);
+    }
+
+    function exercicio4() {
+        let dado = prompt("Digite qualquer coisa:");
+        let confirmar = confirm("Deseja verificar o tipo do dado?");
+        if (confirmar) {
+            document.body.innerHTML = `<h2>O tipo do dado informado é: ${typeof dado}</h2>`;
+        } else {
+            document.body.innerHTML = "<h2>Obrigado por visitar esta página</h2>";
+        }
+    }
+</script>
 
     <a href="index.html">Voltar</a>
 </body>
