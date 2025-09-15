@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Contador de Pessoas</title>
+  <link rel="stylesheet" href="style5.css">
+</head>
+<body>
+  <div id="app"></div>
+
+  <script>
+    const app = document.getElementById("app");
+
+    const container = document.createElement("div");
+    container.className = "contador";
+
+    const titulo = document.createElement("h2");
+    titulo.innerText = "Total";
+    container.appendChild(titulo);
+
+    const totalBox = document.createElement("input");
+    totalBox.type = "text";
+    totalBox.value = 0;
+    totalBox.readOnly = true;
+    totalBox.className = "totalBox";
+    container.appendChild(totalBox);
+
+    const resetBtn = document.createElement("button");
+    resetBtn.innerHTML = "&#x21bb;";
+    resetBtn.className = "reset";
+    resetBtn.onclick = () => {
+      homens = 0;
+      mulheres = 0;
+      atualizar();
+    };
+    container.appendChild(resetBtn);
+
+    const homensBox = document.createElement("div");
+    homensBox.className = "pessoa";
+
+    const imgHomem = document.createElement("img");
+    imgHomem.src = "https://cdn-icons-png.flaticon.com/512/145/145867.png";
+    homensBox.appendChild(imgHomem);
+
+    const btnMaisHomem = document.createElement("button");
+    btnMaisHomem.innerText = "+";
+    btnMaisHomem.onclick = () => { homens++; atualizar(); };
+    homensBox.appendChild(btnMaisHomem);
+
+    const btnMenosHomem = document.createElement("button");
+    btnMenosHomem.innerText = "-";
+    btnMenosHomem.onclick = () => { if (homens>0) homens--; atualizar(); };
+    homensBox.appendChild(btnMenosHomem);
+
+    const labelHomens = document.createElement("p");
+    labelHomens.innerText = "Homens";
+    homensBox.appendChild(labelHomens);
+
+    const homensCount = document.createElement("input");
+    homensCount.type = "text";
+    homensCount.value = 0;
+    homensCount.readOnly = true;
+    homensBox.appendChild(homensCount);
+
+    const mulheresBox = document.createElement("div");
+    mulheresBox.className = "pessoa";
+
+    const imgMulher = document.createElement("img");
+    imgMulher.src = "https://cdn-icons-png.flaticon.com/512/145/145862.png";
+    mulheresBox.appendChild(imgMulher);
+
+    const btnMaisMulher = document.createElement("button");
+    btnMaisMulher.innerText = "+";
+    btnMaisMulher.onclick = () => { mulheres++; atualizar(); };
+    mulheresBox.appendChild(btnMaisMulher);
+
+    const btnMenosMulher = document.createElement("button");
+    btnMenosMulher.innerText = "-";
+    btnMenosMulher.onclick = () => { if (mulheres>0) mulheres--; atualizar(); };
+    mulheresBox.appendChild(btnMenosMulher);
+
+    const labelMulheres = document.createElement("p");
+    labelMulheres.innerText = "Mulheres";
+    mulheresBox.appendChild(labelMulheres);
+
+    const mulheresCount = document.createElement("input");
+    mulheresCount.type = "text";
+    mulheresCount.value = 0;
+    mulheresCount.readOnly = true;
+    mulheresBox.appendChild(mulheresCount);
+
+    container.appendChild(homensBox);
+    container.appendChild(mulheresBox);
+    app.appendChild(container);
+
+
+    let homens = 0;
+    let mulheres = 0;
+
+    function atualizar() {
+      homensCount.value = homens;
+      mulheresCount.value = mulheres;
+      totalBox.value = homens + mulheres;
+    }
+  </script>
+</body>
+</html>

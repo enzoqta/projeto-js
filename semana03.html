@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Playlist Interativa</title>
+  <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+  <h1>Minha Playlist</h1>
+
+  <div class="input-area">
+    <input type="text" id="musica" placeholder="Digite o nome da música">
+    <button onclick="adicionarMusica()">Adicionar</button>
+    <button onclick="removerUltima()">Remover Última</button>
+    <button onclick="ordenarPlaylist()">Ordenar</button>
+    <button onclick="filtrar()">Filtrar (A-M)</button>
+  </div>
+
+  <ul id="playlist"></ul>
+
+  <script>
+    let playlist = [];
+
+    function renderizar() {
+      const ul = document.getElementById("playlist");
+      ul.innerHTML = "";
+
+      for (let [index, musica] of playlist.entries()) {
+        let li = document.createElement("li");
+        li.innerHTML = `
+          <span>${musica}</span>
+          <button onclick="editarMusica(${index})">Editar</button>
+          <button onclick="removerMusica(${index})">Excluir</button>
+        `;
+        ul.appendChild(li);
+      }
+    }
+
+    function adicionarMusica() {
+      const input = document.getElementById("musica");
+      if (input.value.trim() !== "") {
+        playlist.push(input.value.trim());
+        input.value = "";
+        renderizar();
+      } else {
+        alert("Digite o nome da música!");
+      }
+    }
+
+    function removerUltima() {
+      if (playlist.length > 0) {
+        playlist.pop();
+        renderizar();
+      } else {
+        alert("Playlist vazia!");
+      }
+    }
+
+    function removerMusica(index) {
+      playlist = playlist.filter((_, i) => i !== index);
+      renderizar();
+    }
+
+    function editarMusica(index) {
+      let nova = prompt("Edite o nome da música:", playlist[index]);
+      if (nova && nova.trim() !== "") {
+        playlist[index] = nova.trim();
+        renderizar();
+      }
+    }
+
+    function ordenarPlaylist() {
+      playlist.sort();
+      renderizar();
+    }
+
+    function filtrar() {
+      let filtradas = playlist.filter(musica => {
+        let primeira = musica[0].toLowerCase();
+        return primeira >= "a" && primeira <= "m";
+      });
+      alert("Músicas de A-M:\n" + filtradas.join("\n"));
+    }
+  </script>
+</body>
+</html>

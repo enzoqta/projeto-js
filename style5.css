@@ -1,0 +1,58 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.contador {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  text-align: center;
+  width: 280px;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+.totalBox {
+  width: 80px;
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.reset {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.pessoa {
+  margin-top: 15px;
+}
+
+.pessoa img {
+  width: 60px;
+  height: 60px;
+}
+
+.pessoa button {
+  margin: 5px;
+  font-size: 18px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.pessoa input {
+  width: 60px;
+  text-align: center;
+  margin-top: 5px;
+}
