@@ -1,0 +1,46 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin-top: 50px;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+#data {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+#relogio {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  background: #222;
+  color: #fff;
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+input {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+
+button {
+  padding: 8px 15px;
+  font-size: 16px;
+  margin-left: 5px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}

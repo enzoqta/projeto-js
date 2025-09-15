@@ -1,13 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Projeto - Atividades JavaScript</title>
+  <link rel="stylesheet" href="style2.css">
 </head>
 <body>
-    <h1>Semana 2</h1>
 
-    <a href="index.html">Voltar</a>
+  
+  <div id="data"></div>
+
+  <div id="relogio"></div>
+
+  <input type="text" id="texto" placeholder="Digite uma palavra ou frase">
+  <button onclick="verificarPalindromo()">Verificar</button>
+
+  <script>
+    const dias = ["domingo", "segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado"];
+    const meses = ["janeiro", "fevereiro", "março", "abril", "maio", "junho",
+                   "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
+
+    let hoje = new Date();
+    let diaSemana = dias[hoje.getDay()];
+    let dia = hoje.getDate();
+    let mes = meses[hoje.getMonth()];
+    let ano = hoje.getFullYear();
+
+    document.getElementById("data").innerText =
+      `${diaSemana}, ${dia} de ${mes} de ${ano}`;
+
+    function atualizarRelogio() {
+      let agora = new Date();
+      let horas = String(agora.getHours()).padStart(2, '0');
+      let minutos = String(agora.getMinutes()).padStart(2, '0');
+      let segundos = String(agora.getSeconds()).padStart(2, '0');
+
+      document.getElementById("relogio").innerText =
+        `${horas}:${minutos}:${segundos}`;
+
+      setTimeout(atualizarRelogio, 1000);
+    }
+    atualizarRelogio();
+
+    function verificarPalindromo() {
+      let texto = document.getElementById("texto").value;
+
+      let normalizado = texto.toLowerCase()
+                            .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                            .replace(/[^a-z0-9]/g, "");
+
+      let invertido = normalizado.split("").reverse().join("");
+
+      if (normalizado && normalizado === invertido) {
+        alert("É um palíndromo!");
+      } else {
+        alert("Não é um palíndromo.");
+      }
+    }
+  </script>
 </body>
 </html>
