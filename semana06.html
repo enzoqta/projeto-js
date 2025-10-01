@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora</title>
+  <link rel="stylesheet" href="style6.css">
+</head>
+<body>
+  <div id="app"></div>
+
+  <script>
+    const app = document.getElementById("app");
+
+    const calculator = document.createElement("div");
+    calculator.classList.add("calculator");
+
+    const display = document.createElement("div");
+    display.classList.add("display");
+    display.innerText = "0";
+    calculator.appendChild(display);
+
+    const buttonsContainer = document.createElement("div");
+    buttonsContainer.classList.add("buttons");
+
+    const buttons = [
+      { text: "AC", class: "gray" },
+      { text: "+/-", class: "gray" },
+      { text: "%", class: "gray" },
+      { text: "÷", class: "operator" },
+      { text: "7", class: "dark" },
+      { text: "8", class: "dark" },
+      { text: "9", class: "dark" },
+      { text: "×", class: "operator" },
+      { text: "4", class: "dark" },
+      { text: "5", class: "dark" },
+      { text: "6", class: "dark" },
+      { text: "-", class: "operator" },
+      { text: "1", class: "dark" },
+      { text: "2", class: "dark" },
+      { text: "3", class: "dark" },
+      { text: "+", class: "operator" },
+      { text: "0", class: "dark zero" },
+      { text: ".", class: "dark" },
+      { text: "=", class: "operator" }
+    ];
+
+    buttons.forEach(btn => {
+      const button = document.createElement("button");
+      button.innerText = btn.text;
+      button.className = btn.class;
+      buttonsContainer.appendChild(button);
+
+      button.addEventListener("click", () => handleClick(btn.text));
+    });
+
+    calculator.appendChild(buttonsContainer);
+    app.appendChild(calculator);
+
+
+    let currentInput = "0";
+    let operator = null;
+    let previousInput = null;
+
+    function updateDisplay() {
+      display.innerText = currentInput;
+    }
+
+    function handleClick(value) {
+      if (!isNaN(value) || value === ".") {
+        if (currentInput === "0" && value !== ".") {
+          currentInput = value;
+        } else {
+          currentInput += value;
+        }
+      } else if (value === "AC") {
+        currentInput = "0";
+        operator = null;
+        previousInput = null;
+      } else if (value === "+/-") {
+        currentInput = (parseFloat(currentInput) * -1).toString();
+      } else if (value === "%") {
+        currentInput = (parseFloat(currentInput) / 100).toString();
+      } else if (["+", "-", "×", "÷"].includes(value)) {
+        operator = value;
+        previousInput = currentInput;
+        currentInput = "0";
+      } else if (value === "=") {
+        if (operator && previousInput !== null) {
+          let result;
+          const prev = parseFloat(previousInput);
+          const curr = parseFloat(currentInput);
+
+          switch (operator) {
+            case "+": result = prev + curr; break;
+            case "-": result = prev - curr; break;
+            case "×": result = prev * curr; break;
+            case "÷": result = prev / curr; break;
+          }
+          currentInput = result.toString();
+          operator = null;
+          previousInput = null;
+        }
+      }
+      updateDisplay();
+    }
+
+    updateDisplay();
+  </script>
+</body>
+</html>
